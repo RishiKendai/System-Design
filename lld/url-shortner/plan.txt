@@ -1,0 +1,43 @@
+1. Requriement Clarification
+-----------------------------
+Functional Requirements
+-----------------------
+
+1. Generate Tiny URL for every Long URL
+2. Each URL should get unique Tiny URL 
+3. Redirect orignal URL
+4. URL expiry
+5. Delete URL
+6. Custom Alias
+
+Non-Functional Requirements
+----------------------------
+
+1. 7Char long with base 62 encoding.
+2. High Available
+3. Latency < 100ms
+
+2. Entities
+------------
+
+URL
+User
+Click
+Analytics
+
+
+3. Core Action
+--------------
+
+1. User Creates Account
+2. User enters long url and get short url
+3. Visitors visits the short url and get redirected to Long URL
+4. Track the click count of each url
+
+4. Critical Flow
+----------------
+
+1. Long url -> Short URL
+2. Redirecting URL & Tracking clicks
+
+
