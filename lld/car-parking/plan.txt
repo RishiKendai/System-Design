@@ -1,0 +1,38 @@
+>> Requirement Clarification
+-------------------------
+Functional Requirement:
+    1. Parking slot
+    2. time based Parking
+    3. multi level Parking
+    4. Different Vehicles
+
+Non-Functional Requirement:
+    1. Get nearest parking slot
+    2. able to change lower higher order but not higher to lower order
+    3. No 2 vehicle get same slot
+
+>> Entities
+===========
+
+1. Vehicles (Bike, Car, Truck, EV)
+2. ParkingSlot
+3. Ticket
+4. Payment
+5. PricingStrategy
+
+>> Core Actions
+-----------------
+1. Vehicle comes in
+2. Check for slot availability
+3. If that vType not available check for nextNearest Type
+4. If not available return "NOT AVAILABLE"
+5. If available Generate Ticket and park
+6. On exit check Ticket > Calculate Price using PricingStrategy and Pay using Payment 
+7. Free up the space once payment done.
+
+>> Critical Flow
+----------------
+
+1. Check Availability
+2. Payment (Payment Strategy and Payment method)
+3. Push Freed-up slot to the ParkingSlot.
