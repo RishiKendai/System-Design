@@ -1,0 +1,25 @@
+Functional Requirements
+
+1. 2 player
+2. fixed 8*8 board
+3. Game status
+    1. win
+    2. draw
+    3. lose
+4. Valid movie
+5. Reject Invalid movie
+6. Spectator mode
+
+Non-functional Requirements
+
+1. Concurrency
+2. Consistency >> Availability
+3. Multiple Concurrency Game
+4. Extensibility
+
+
+GameManager → manages games
+Game        → orchestrates gameplay (brain)
+Board       → stores state (dumb)
+Piece       → knows movement rules
+Player      → just identity/input
