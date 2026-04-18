@@ -19,7 +19,6 @@ const (
 	phaseName1 phase = iota
 	phaseColor1
 	phaseName2
-	phaseColor2
 	phasePlay
 	phasePromotion
 	phaseGameOver
@@ -147,6 +146,13 @@ func (m *Model) startGame() {
 	m.viewport.SetContent(m.moveHistoryText())
 }
 
+func oppositePieceColor(c pieces.PieceColor) pieces.PieceColor {
+	if c == pieces.White {
+		return pieces.Black
+	}
+	return pieces.White
+}
+
 func (m *Model) orderedPlayers() []*player.Player {
 	if m.p1color == pieces.White {
 		return []*player.Player{
@@ -168,8 +174,6 @@ func (m *Model) setupPrompt() string {
 		return "Player 1 — color (White / Black)"
 	case phaseName2:
 		return "Player 2 — name"
-	case phaseColor2:
-		return "Player 2 — color (White / Black)"
 	case phasePromotion:
 		return "Promotion — press Q R B or K (knight)"
 	case phaseGameOver:

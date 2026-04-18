@@ -216,24 +216,7 @@ func (m *Model) handleSetupKey(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			return m, nil
 		case phaseName2:
 			m.p2name = line
-			m.textInput.SetValue("")
-			m.textInput.Placeholder = "White or Black"
-			m.phase = phaseColor2
-			return m, nil
-		case phaseColor2:
-			c, ok := parsePieceColor(line)
-			if !ok {
-				m.pushMsg("Invalid color: type White or Black (W or B).")
-				return m, nil
-			}
-			m.p2color = c
-			if m.p1color == m.p2color {
-				m.pushMsg("Colors must differ. Start again from player 1.")
-				m.phase = phaseName1
-				m.textInput.SetValue("")
-				m.textInput.Placeholder = "your name"
-				return m, nil
-			}
+			m.p2color = oppositePieceColor(m.p1color)
 			m.startGame()
 			return m, nil
 		default:

@@ -1,8 +1,8 @@
-# Terminal chess
+# chess CLI
 
 Source code for this app lives under the System-Design monorepo: [`lld/chess`](https://github.com/RishiKendai/System-Design/tree/main/lld/chess) (same directory as `main.go`).
 
-This is a **two-player chess game** you play **in the terminal**. The UI is built with [**Bubble Tea**](https://github.com/charmbracelet/bubbletea) so it feels **interactive and polished**—full-screen layout, text inputs, and scrollable move history instead of a bare stream of prompts. Two people share the keyboard: you enter names and colors, then take turns entering moves until checkmate, stalemate, or draw. A small engine under the hood handles the board, piece rules, and special cases (castling, en passant, pawn promotion, and the rest).
+This is a **two-player chess game** you play **in the terminal**. The UI is built with [**Bubble Tea**](https://github.com/charmbracelet/bubbletea) so it feels **interactive and polished**—full-screen layout, text inputs, and scrollable move history instead of a bare stream of prompts. Two people share the keyboard: you enter names, player 1 picks White or Black (player 2 takes the other side), then take turns entering moves until checkmate, stalemate, or draw. A small engine under the hood handles the board, piece rules, and special cases (castling, en passant, pawn promotion, and the rest).
 
 ## What you get
 
@@ -52,6 +52,35 @@ chmod +x "$HOME/.local/bin/chess"
 # Put ~/.local/bin on PATH, then:
 chess
 ```
+
+### macOS: “Apple could not verify…” (Gatekeeper)
+
+Prebuilt binaries from GitHub are **not Apple-notarized**, so the first time you open one, macOS may say it cannot verify the app is free of malware. That is normal for unsigned open-source builds; only proceed if you trust this repo and the release you downloaded.
+
+**If you cannot run the binary** (blocked, “damaged,” or Terminal refuses to execute it), remove the download quarantine flag, then `chmod +x` and run again. Adjust the path if the file is not in Downloads; on Intel Macs use `chess-darwin-amd64` instead of `chess-darwin-arm64`.
+
+```bash
+xattr -dr com.apple.quarantine ~/Downloads/chess-darwin-arm64
+```
+
+**Ways to run it anyway (pick one):**
+
+1. **Finder:** Control-click (or right-click) `chess-darwin-arm64` → **Open** → confirm **Open** on the dialog (not a double-click the first time).
+2. **System Settings:** **Privacy & Security** → after you try to open the file once, look for a message about it being blocked and click **Open Anyway**.
+3. **Terminal** (good for this app anyway, since it is a full-screen TUI):
+
+   ```bash
+   chmod +x /path/to/chess-darwin-arm64
+   /path/to/chess-darwin-arm64
+   ```
+
+4. If the browser added a **quarantine** flag and Terminal still refuses, remove it (only for files you trust):
+
+   ```bash
+   xattr -dr com.apple.quarantine /path/to/chess-darwin-arm64
+   ```
+
+Long term, a maintainer can distribute a **signed and notarized** macOS build to avoid this prompt; that requires an Apple Developer Program subscription and a release pipeline that submits binaries to Apple.
 
 ### Optional checksum verification
 
