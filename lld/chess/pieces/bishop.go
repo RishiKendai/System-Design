@@ -1,6 +1,6 @@
 package pieces
 
-import "github.com/lld/chess/utils"
+import "github.com/RishiKendai/System-Design/lld/chess/utils"
 
 func NewBishop(c PieceColor, p Position) *Bishop {
 	return &Bishop{BasePiece: BasePiece{color: c, position: p, ptype: BishopType}}

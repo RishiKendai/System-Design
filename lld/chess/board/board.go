@@ -1,7 +1,7 @@
 package board
 
 import (
-	"github.com/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
 )
 
 func NewBoard() *Board {

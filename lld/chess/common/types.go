@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
 )
 
 type Move struct {

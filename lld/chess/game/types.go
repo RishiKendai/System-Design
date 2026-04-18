@@ -1,10 +1,10 @@
 package game
 
 import (
-	"github.com/lld/chess/board"
-	"github.com/lld/chess/common"
-	"github.com/lld/chess/pieces"
-	"github.com/lld/chess/player"
+	"github.com/RishiKendai/System-Design/lld/chess/board"
+	"github.com/RishiKendai/System-Design/lld/chess/common"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/player"
 )
 
 type GameStatus string

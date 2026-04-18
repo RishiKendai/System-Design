@@ -1,7 +1,7 @@
 package game
 
 import (
-	"github.com/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
 )
 
 func (g *Game) isSquareUnderAttack(pos pieces.Position, player pieces.PieceColor) bool {

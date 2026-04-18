@@ -1,7 +1,5 @@
 package pieces
 
-// give CanMove and CanAttack for
-
 type Position struct {
 	row int
 	col int

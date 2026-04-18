@@ -4,9 +4,9 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
-	"github.com/lld/chess/board"
-	"github.com/lld/chess/game"
-	"github.com/lld/chess/player"
+	"github.com/RishiKendai/System-Design/lld/chess/board"
+	"github.com/RishiKendai/System-Design/lld/chess/game"
+	"github.com/RishiKendai/System-Design/lld/chess/player"
 )
 
 func NewGameManager() *GameManager {

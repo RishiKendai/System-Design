@@ -3,9 +3,31 @@ package game
 import (
 	"fmt"
 
-	"github.com/lld/chess/pieces"
-	"github.com/lld/chess/utils"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/utils"
 )
+
+func (g *Game) applyPromotionAt(to pieces.Position, pawn pieces.Piece, typ pieces.PieceType) error {
+	var promoted pieces.Piece
+	switch typ {
+	case pieces.QueenType:
+		promoted = pieces.NewQueen(pawn.GetColor(), to)
+	case pieces.RookType:
+		promoted = pieces.NewRook(pawn.GetColor(), to)
+	case pieces.BishopType:
+		promoted = pieces.NewBishop(pawn.GetColor(), to)
+	case pieces.KnightType:
+		promoted = pieces.NewKnight(pawn.GetColor(), to)
+	default:
+		return fmt.Errorf("invalid promotion: use Q, R, B, or K (knight)")
+	}
+
+	g.removeActivePiece(pawn)
+	g.board.SetPiece(to.GetRow(), to.GetCol(), promoted)
+	promoted.SetPosition(to)
+	g.setActivePiece(promoted)
+	return nil
+}
 
 func (g *Game) isCastling(from, to pieces.Position, piece pieces.Piece) bool {
 	_, ok := piece.(*pieces.King)
@@ -234,33 +256,3 @@ func (g *Game) isPromotion(from, to pieces.Position, piece pieces.Piece) bool {
 	return false
 }
 
-func (g *Game) handlePromotion(from, to pieces.Position, pawn pieces.Piece) {
-	var piece string
-	fmt.Println("Promote to which piece? (Q, R, B, K)")
-	var promotedPiece pieces.Piece
-	fmt.Scanln(&piece)
-	switch piece {
-	case "Q", "q":
-		promotedPiece = pieces.NewQueen(pawn.GetColor(), to)
-	case "R", "r":
-		promotedPiece = pieces.NewRook(pawn.GetColor(), to)
-	case "B", "b":
-		promotedPiece = pieces.NewBishop(pawn.GetColor(), to)
-	case "K", "k":
-		promotedPiece = pieces.NewKnight(pawn.GetColor(), to)
-	default:
-		fmt.Println("Invalid piece")
-		return
-	}
-
-	capturedPiece := g.board.GetPiece(to.GetRow(), to.GetCol())
-	if capturedPiece != nil {
-		g.removeActivePiece(capturedPiece)
-		g.board.Clear(capturedPiece.GetPosition().GetRow(), capturedPiece.GetPosition().GetCol())
-	}
-	// replace pawn with new piece
-	g.board.SetPiece(to.GetRow(), to.GetCol(), promotedPiece)
-	promotedPiece.SetPosition(to)
-	g.setActivePiece(promotedPiece)
-	// g.board.Clear(from.GetRow(), from.GetCol())
-}

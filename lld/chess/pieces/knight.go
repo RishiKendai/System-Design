@@ -1,6 +1,6 @@
 package pieces
 
-import "github.com/lld/chess/utils"
+import "github.com/RishiKendai/System-Design/lld/chess/utils"
 
 func NewKnight(c PieceColor, p Position) *Knight {
 	return &Knight{BasePiece: BasePiece{color: c, position: p, ptype: KnightType}}

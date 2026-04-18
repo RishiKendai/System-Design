@@ -3,7 +3,7 @@ package gamemanager
 import (
 	"sync"
 
-	"github.com/lld/chess/game"
+	"github.com/RishiKendai/System-Design/lld/chess/game"
 )
 
 type GameManager struct {

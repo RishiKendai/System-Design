@@ -1,6 +1,6 @@
 package pieces
 
-import "github.com/lld/chess/utils"
+import "github.com/RishiKendai/System-Design/lld/chess/utils"
 
 func NewKing(c PieceColor, p Position) *King {
 	return &King{BasePiece: BasePiece{color: c, position: p, ptype: KingType}, hasCastled: false}

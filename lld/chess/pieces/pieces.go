@@ -3,7 +3,7 @@ package pieces
 import (
 	"fmt"
 
-	"github.com/lld/chess/utils"
+	"github.com/RishiKendai/System-Design/lld/chess/utils"
 )
 
 func NewPosition(r, c int) Position {

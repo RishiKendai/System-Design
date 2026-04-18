@@ -3,7 +3,7 @@ package pieces
 import (
 	"fmt"
 
-	"github.com/lld/chess/utils"
+	"github.com/RishiKendai/System-Design/lld/chess/utils"
 )
 
 func NewPawn(c PieceColor, p Position) *Pawn {

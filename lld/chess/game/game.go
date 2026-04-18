@@ -3,10 +3,10 @@ package game
 import (
 	"fmt"
 
-	"github.com/lld/chess/board"
-	"github.com/lld/chess/common"
-	"github.com/lld/chess/pieces"
-	"github.com/lld/chess/player"
+	"github.com/RishiKendai/System-Design/lld/chess/board"
+	"github.com/RishiKendai/System-Design/lld/chess/common"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/player"
 )
 
 func (g *Game) InitializePieces() {
@@ -57,7 +57,9 @@ func (g *Game) notifyPlayers(move common.Move) {
 	}
 }
 
-func (g *Game) MakeMove(from, to pieces.Position) error {
+// MakeMove applies a move. promotion must be non-nil only for pawn moves to the
+// last rank; otherwise pass nil. If promotion is required but nil, returns ErrPromotionRequired.
+func (g *Game) MakeMove(from, to pieces.Position, promotion *pieces.PieceType) error {
 	piece := g.board.GetPiece(from.GetRow(), from.GetCol())
 	if piece == nil {
 		return fmt.Errorf("no piece")
@@ -67,6 +69,14 @@ func (g *Game) MakeMove(from, to pieces.Position) error {
 
 	if !g.isValidMove(g.board, from, to, mType) {
 		return fmt.Errorf("invalid move")
+	}
+
+	if promotion != nil && !g.isPromotion(from, to, piece) {
+		return fmt.Errorf("unexpected promotion for this move")
+	}
+
+	if mType == Normal && g.isPromotion(from, to, piece) && promotion == nil {
+		return ErrPromotionRequired
 	}
 
 	switch mType {
@@ -88,11 +98,24 @@ func (g *Game) MakeMove(from, to pieces.Position) error {
 		IsMate:   false,
 	}
 
-	// handle promotion
-	if g.isPromotion(from, to, piece) {
-		g.handlePromotion(from, to, piece)
+	if mType == Normal && g.isPromotion(from, to, piece) {
+		if err := g.applyPromotionAt(to, piece, *promotion); err != nil {
+			return err
+		}
 	}
-	g.updatePieceState(piece)
+
+	var statePiece pieces.Piece
+	switch mType {
+	case Normal:
+		if g.isPromotion(from, to, piece) {
+			statePiece = g.board.GetPiece(to.GetRow(), to.GetCol())
+		} else {
+			statePiece = piece
+		}
+	default:
+		statePiece = piece
+	}
+	g.updatePieceState(statePiece)
 	g.updateGameStatus(&move)
 	g.movesHistory = append(g.movesHistory, move)
 	g.notifyPlayers(move)

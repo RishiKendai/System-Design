@@ -1,6 +1,6 @@
 package pieces
 
-import "github.com/lld/chess/utils"
+import "github.com/RishiKendai/System-Design/lld/chess/utils"
 
 func NewQueen(c PieceColor, p Position) *Queen {
 	return &Queen{BasePiece: BasePiece{color: c, position: p, ptype: QueenType}}

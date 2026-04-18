@@ -1,8 +1,8 @@
 package game
 
 import (
-	"github.com/lld/chess/board"
-	"github.com/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/board"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
 )
 
 func (g *Game) isValidMove(board *board.Board, from, to pieces.Position, mType MoveType) bool {

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/lld/chess/common"
-	"github.com/lld/chess/pieces"
+	"github.com/RishiKendai/System-Design/lld/chess/common"
+	"github.com/RishiKendai/System-Design/lld/chess/pieces"
 )
 
 // piecePrintOrder: king first, then queen, then descending material (rook, bishop, knight, pawn).
