@@ -10,6 +10,9 @@ This repository is a workspace for learning **system design** from two angles th
 
 - [Car parking](lld/car-parking/)
 - [URL shortener](lld/url-shortner/)
+- [Chess CLI](lld/chess/)
+
+    You can download it, try playing chess in the terminal, and have fun. For download and install instructions, see the [Chess CLI instructions](lld/chess/README.md).
 
 ## HLD — topics covered
 
