@@ -16,4 +16,4 @@ This repository is a workspace for learning **system design** from two angles th
 
 ## HLD — topics covered
 
-- *In progress*
+- [Distributed rate limiter](hld/distributed-rate-limiter/)
